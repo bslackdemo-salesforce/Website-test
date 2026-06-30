@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Christmas Tree Farm</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #0a1a0a;
+      color: #f0e6d3;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(0,0,0,0.6);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #2d5a1b;
+    }
+    .nav-logo { font-size: 1.4rem; color: #c8a951; letter-spacing: 2px; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #f0e6d3; text-decoration: none; font-size: 0.95rem; letter-spacing: 1px; }
+    .nav-links a:hover { color: #c8a951; }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(160deg, #0d2b0d 0%, #1a4a1a 50%, #0a1a0a 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 4rem;
+    }
+
+    /* Snow */
+    .snowflakes { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+    .snowflake {
+      position: absolute;
+      top: -20px;
+      color: #fff;
+      font-size: 1.2em;
+      animation: fall linear infinite;
+      opacity: 0.7;
+    }
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Tree */
+    .tree-container { position: relative; margin-bottom: 2.5rem; }
+    .tree {
+      width: 0; height: 0;
+      filter: drop-shadow(0 0 30px rgba(50,180,50,0.4));
+    }
+    .tree-layer-1 {
+      border-left: 80px solid transparent;
+      border-right: 80px solid transparent;
+      border-bottom: 120px solid #1e6b1e;
+      margin: 0 auto -40px;
+    }
+    .tree-layer-2 {
+      border-left: 110px solid transparent;
+      border-right: 110px solid transparent;
+      border-bottom: 150px solid #237023;
+      margin: 0 auto -50px;
+    }
+    .tree-layer-3 {
+      border-left: 145px solid transparent;
+      border-right: 145px solid transparent;
+      border-bottom: 180px solid #1a5e1a;
+      margin: 0 auto;
+    }
+    .trunk {
+      width: 36px; height: 55px;
+      background: #6b3a2a;
+      margin: 0 auto;
+      border-radius: 3px;
+    }
+    .tree-star {
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.2rem;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 6px #ffe066); }
+      to   { filter: drop-shadow(0 0 22px #ffcc00); }
+    }
+
+    /* Ornaments */
+    .ornament {
+      position: absolute;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      animation: twinkle 1.5s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      from { opacity: 1; transform: scale(1); }
+      to   { opacity: 0.5; transform: scale(0.8); }
+    }
+    .o1  { background:#e63946; top:55px;  left:45%;  animation-delay:0.0s; }
+    .o2  { background:#f4d03f; top:65px;  left:55%;  animation-delay:0.3s; }
+    .o3  { background:#2ecc71; top:90px;  left:38%;  animation-delay:0.5s; }
+    .o4  { background:#3498db; top:95px;  left:60%;  animation-delay:0.2s; }
+    .o5  { background:#e63946; top:120px; left:30%;  animation-delay:0.7s; }
+    .o6  { background:#f4d03f; top:125px; left:52%;  animation-delay:0.1s; }
+    .o7  { background:#9b59b6; top:130px; left:68%;  animation-delay:0.6s; }
+    .o8  { background:#2ecc71; top:155px; left:24%;  animation-delay:0.4s; }
+    .o9  { background:#3498db; top:160px; left:44%;  animation-delay:0.8s; }
+    .o10 { background:#e63946; top:165px; left:64%;  animation-delay:0.2s; }
+    .o11 { background:#f4d03f; top:170px; left:76%;  animation-delay:0.9s; }
+
+    /* Lights string */
+    .lights { display:flex; gap:18px; margin-bottom:1rem; }
+    .bulb {
+      width:12px; height:18px;
+      border-radius:3px 3px 50% 50%;
+      animation: bulb-flash 2s ease-in-out infinite alternate;
+    }
+    @keyframes bulb-flash { from{opacity:1;} to{opacity:0.3;} }
+    .b1{background:#e63946;animation-delay:0.0s;}
+    .b2{background:#f4d03f;animation-delay:0.3s;}
+    .b3{background:#2ecc71;animation-delay:0.6s;}
+    .b4{background:#3498db;animation-delay:0.9s;}
+    .b5{background:#e63946;animation-delay:0.2s;}
+    .b6{background:#f4d03f;animation-delay:0.5s;}
+    .b7{background:#2ecc71;animation-delay:0.8s;}
+    .b8{background:#3498db;animation-delay:0.1s;}
+
+    /* Hero text */
+    .hero-tagline {
+      font-size: 0.9rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #c8a951;
+      margin-bottom: 1rem;
+    }
+    /* INTENTIONAL TYPO: "Christams" instead of "Christmas" */
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1.1;
+      color: #ffffff;
+      text-shadow: 0 0 40px rgba(200,169,81,0.5);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title span { color: #c8a951; }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: #b0c8a0;
+      max-width: 500px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta {
+      display: inline-block;
+      padding: 0.9rem 2.8rem;
+      background: #c8a951;
+      color: #0a1a0a;
+      text-decoration: none;
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .hero-cta:hover { background: #e0c070; transform: translateY(-2px); }
+
+    /* FEATURES */
+    .features {
+      padding: 6rem 3rem;
+      background: #0d1f0d;
+      text-align: center;
+    }
+    .section-title {
+      font-size: 2rem;
+      color: #c8a951;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+    }
+    .section-divider {
+      width: 60px; height: 2px;
+      background: #2d5a1b;
+      margin: 0.8rem auto 3rem;
+    }
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #122012;
+      border: 1px solid #2d5a1b;
+      border-radius: 6px;
+      padding: 2.5rem 2rem;
+      width: 280px;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .card:hover { transform: translateY(-6px); border-color: #c8a951; }
+    .card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .card h3 { color: #c8a951; margin-bottom: 0.8rem; font-size: 1.1rem; letter-spacing: 1px; }
+    .card p { color: #8aab82; font-size: 0.95rem; line-height: 1.7; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2.5rem;
+      background: #060f06;
+      color: #4a6e4a;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">&#127876; EVERGREEN FARMS</div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Our Trees</a></li>
+      <li><a href="#">Visit Us</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <!-- Snowflakes -->
+    <div class="snowflakes" id="snowflakes"></div>
+
+    <!-- Tree -->
+    <div class="tree-container">
+      <div class="tree-star">&#11088;</div>
+      <div class="tree-layer-1 tree"></div>
+      <div class="tree-layer-2 tree"></div>
+      <div class="tree-layer-3 tree"></div>
+      <div class="trunk"></div>
+      <!-- Ornaments -->
+      <div class="ornament o1"></div>
+      <div class="ornament o2"></div>
+      <div class="ornament o3"></div>
+      <div class="ornament o4"></div>
+      <div class="ornament o5"></div>
+      <div class="ornament o6"></div>
+      <div class="ornament o7"></div>
+      <div class="ornament o8"></div>
+      <div class="ornament o9"></div>
+      <div class="ornament o10"></div>
+      <div class="ornament o11"></div>
+    </div>
+
+    <!-- Lights -->
+    <div class="lights">
+      <div class="bulb b1"></div><div class="bulb b2"></div>
+      <div class="bulb b3"></div><div class="bulb b4"></div>
+      <div class="bulb b5"></div><div class="bulb b6"></div>
+      <div class="bulb b7"></div><div class="bulb b8"></div>
+    </div>
+
+    <p class="hero-tagline">Est. 1952 &nbsp;·&nbsp; Family Grown &nbsp;·&nbsp; Hand Selected</p>
+
+    <!-- INTENTIONAL TYPO in hero title: "Christams" -->
+    <h1 class="hero-title">
+      Find Your Perfect<br>
+      <span>Christams</span> Tree
+    </h1>
+
+    <p class="hero-sub">
+      Fresh-cut Fraser Firs, Douglas Firs, and Blue Spruces — grown with care
+      on our family farm and ready to bring warmth to your home this season.
+    </p>
+
+    <a href="#" class="hero-cta">Shop Our Trees</a>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <h2 class="section-title">Why Evergreen Farms</h2>
+    <div class="section-divider"></div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">&#127807;</div>
+        <h3>Sustainably Grown</h3>
+        <p>Every tree we harvest is replaced with three new seedlings, keeping our forest healthy for generations.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#10024;</div>
+        <h3>Hand Selected</h3>
+        <p>Our team hand-tags each tree at peak freshness so it stays vibrant throughout the entire holiday season.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#128665;</div>
+        <h3>Free Local Delivery</h3>
+        <p>We'll deliver and set up your tree within 20 miles of the farm — no hassle, no mess, just holiday magic.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2024 Evergreen Farms &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; Made with &#10084; and a little holiday magic</p>
+  </footer>
+
+  <script>
+    // Generate snowflakes
+    const container = document.getElementById('snowflakes');
+    const flakes = ['&#10052;','&#10053;','&#10054;','*','+'];
+    for (let i = 0; i < 40; i++) {
+      const el = document.createElement('div');
+      el.className = 'snowflake';
+      el.innerHTML = flakes[Math.floor(Math.random() * flakes.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.fontSize = (0.8 + Math.random() * 1.4) + 'rem';
+      el.style.animationDuration = (6 + Math.random() * 10) + 's';
+      el.style.animationDelay = (Math.random() * 10) + 's';
+      container.appendChild(el);
+    }
+  </script>
+
+</body>
+</html>
