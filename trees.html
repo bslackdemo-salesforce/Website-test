@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop Our Trees — Evergreen Farms</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #0a1a0a;
+      color: #f0e6d3;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(0,0,0,0.6);
+      border-bottom: 1px solid #2d5a1b;
+    }
+    .nav-logo { font-size: 1.4rem; color: #c8a951; letter-spacing: 2px; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #f0e6d3; text-decoration: none; font-size: 0.95rem; letter-spacing: 1px; }
+    .nav-links a:hover { color: #c8a951; }
+
+    .page-header {
+      text-align: center;
+      padding: 5rem 2rem 3rem;
+      background: linear-gradient(160deg, #0d2b0d 0%, #1a4a1a 100%);
+    }
+    .page-header h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: #fff;
+      margin-bottom: 0.8rem;
+    }
+    .page-header h1 span { color: #c8a951; }
+    .page-header p {
+      color: #b0c8a0;
+      font-size: 1.05rem;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .shop {
+      padding: 4rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .tree-card {
+      background: #122012;
+      border: 1px solid #2d5a1b;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .tree-card:hover { transform: translateY(-6px); border-color: #c8a951; }
+
+    .tree-img {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0d2b0d, #1a4a1a);
+      font-size: 5rem;
+    }
+
+    .tree-info { padding: 1.5rem; }
+    .tree-info h3 { color: #c8a951; font-size: 1.1rem; margin-bottom: 0.4rem; }
+    .tree-info .size { color: #8aab82; font-size: 0.85rem; margin-bottom: 0.8rem; }
+    .tree-info p { color: #b0c8a0; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.2rem; }
+    .tree-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .price { font-size: 1.3rem; color: #fff; font-weight: bold; }
+    .add-btn {
+      background: #c8a951;
+      color: #0a1a0a;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: background 0.2s;
+    }
+    .add-btn:hover { background: #e0c070; }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem;
+      background: #060f06;
+      color: #4a6e4a;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">&#127876; EVERGREEN FARMS</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="trees.html">Our Trees</a></li>
+      <li><a href="#">Visit Us</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header">
+    <h1>Shop Our <span>Christmas Trees</span></h1>
+    <p>Hand-selected Fraser Firs, Douglas Firs, and Blue Spruces — fresh cut and ready to brighten your home.</p>
+  </div>
+
+  <section class="shop">
+    <div class="grid">
+
+      <div class="tree-card">
+        <div class="tree-img">&#127794;</div>
+        <div class="tree-info">
+          <h3>Fraser Fir</h3>
+          <div class="size">4–5 ft &nbsp;·&nbsp; Best Seller</div>
+          <p>Classic symmetrical shape with strong branches and a fresh pine scent that lasts all season.</p>
+          <div class="tree-footer">
+            <span class="price">$59</span>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tree-card">
+        <div class="tree-img">&#127795;</div>
+        <div class="tree-info">
+          <h3>Fraser Fir</h3>
+          <div class="size">6–7 ft &nbsp;·&nbsp; Most Popular</div>
+          <p>The perfect centrepiece tree with dense, dark green needles and excellent needle retention.</p>
+          <div class="tree-footer">
+            <span class="price">$89</span>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tree-card">
+        <div class="tree-img">&#127796;</div>
+        <div class="tree-info">
+          <h3>Douglas Fir</h3>
+          <div class="size">5–6 ft &nbsp;·&nbsp; Great Value</div>
+          <p>Soft to the touch with a sweet fragrance. Full, lush appearance that fills the room.</p>
+          <div class="tree-footer">
+            <span class="price">$69</span>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tree-card">
+        <div class="tree-img">&#127794;</div>
+        <div class="tree-info">
+          <h3>Blue Spruce</h3>
+          <div class="size">6–7 ft &nbsp;·&nbsp; Premium</div>
+          <p>Stunning silvery-blue needles and a perfectly conical shape. A showstopper for any room.</p>
+          <div class="tree-footer">
+            <span class="price">$109</span>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tree-card">
+        <div class="tree-img">&#127795;</div>
+        <div class="tree-info">
+          <h3>Blue Spruce</h3>
+          <div class="size">8–9 ft &nbsp;·&nbsp; Grand</div>
+          <p>For the home with high ceilings. Bold, dramatic, and impossible to miss.</p>
+          <div class="tree-footer">
+            <span class="price">$149</span>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tree-card">
+        <div class="tree-img">&#127796;</div>
+        <div class="tree-info">
+          <h3>Fraser Fir</h3>
+          <div class="size">10+ ft &nbsp;·&nbsp; Statement</div>
+          <p>Our largest tree, hand-selected for commercial spaces and grand living rooms.</p>
+          <div class="tree-footer">
+            <span class="price">$199</span>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Evergreen Farms &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; Made with &#10084; and a little holiday magic</p>
+  </footer>
+
+</body>
+</html>
